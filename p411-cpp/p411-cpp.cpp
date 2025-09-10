@@ -1,57 +1,58 @@
 #include <iostream>
 
-// Напишите программу на C++, чтобы создать класс под названием «Человек», 
-// который имеет частные переменные для имени, возраста и страны. 
-// Внедрение функций членов для установки и получения значений этих переменных. 
+// Напишите программу на C++, чтобы создать класс под названием Car, 
+// который имеет частные переменные для компании, модели и года. 
+// Внедрение функций членов для получения и установки этих переменных. 
 
-class Human {
-
+class Car {
 	private:
-		std::string name;
-		int age;
-		std::string country;
+		std::string company;
+		std::string model;
+		int year;
 
 	public:
-		Human(std::string name, int age, std::string country) {
-			this->name = name;
-			this->age = age;
-			this->country = country;
+		Car(std::string company, std::string model, int year) {
+			this->company = company;
+			this->model = model;
+			this->year = year;
 		}
 
-		std::string getName() {
-			return name;
+		std::string getCompany() {
+			return company;
 		}
 
-		std::string getCountry() {
-			return country;
+		std::string getModel() {
+			return model;
 		}
 
-		int getAge() {
-			return age;
+		int getYear() {
+			return year;
 		}
 
-		void setName(std::string value) {
-			name = value;
+		void setCompany(std::string value) {
+			company = value;
 		}
 
-		void setCountry(std::string value) {
-			country = value;
+		void setModel(std::string value) {
+			model = value;
 		}
 
-		void setAge(int value) {
-			age = value;
+		void setYear(int value) {
+			year = value;
 		}
 
 		void show() {
-			std::cout << "Name: " << name << std::endl;
-			std::cout << "Age: " << age << std::endl;
-			std::cout << "Country: " << country << std::endl;
+			std::cout << "Company: " << company << std::endl;
+			std::cout << "Model: " << model << std::endl;
+			std::cout << "Year: " << year << std::endl;
+			std::cout << std::endl;
 		}
 };
 
 int main()
 {
-	Human h("John", 25, "USA");	
-	h.show();
+	Car c("Toyota", "Camry", 2022);
+	
+	c.show();
 }
 
