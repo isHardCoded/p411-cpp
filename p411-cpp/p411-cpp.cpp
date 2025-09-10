@@ -1,40 +1,29 @@
 #include <iostream>
 
-class Character {
-	public:
-		std::string name;
-		int level;
-		double mana;
-		bool isAlive;
+// Напишите программу на C++ для реализации класса под названием Circle, который имеет частные переменные членов для радиуса. 
+// Включите функции членов для вычисления площади и окружности круга. 
 
-		Character (std::string name, int level, double mana, bool isAlive) {
-			this->name = name;
-			this->level = level;
-			this->mana = mana;
-			this->isAlive = isAlive;
+class Circle {
+	public:
+		double radius;
+
+		Circle(double radius) {
+			this->radius = radius;
 		}
 
-		void show() {
-			std::cout << "Name: " << name << std::endl;
-			std::cout << "Level: " << level << std::endl;
-			std::cout << "Mana: " << mana << std::endl;
-			std::cout << "Is alive: " << isAlive << std::endl;
-			std::cout << std::endl;
+		double area() {
+			return 3.14 * radius * radius;
+		}
+
+		double perimeter() {
+			return 2 * 3.14 * radius;
 		}
 };
 
 int main()
 {
-	Character* characters[] = {
-		new Character("John", 5, 10.5, true),
-		new Character("Tom", 4, 2.5, false),
-		new Character("Tim", 12, 32.5, true),
-		new Character("Jim", 7, 14.5, true),
-		new Character("Bob", 1, 1, true)
-	};
-
-	for (auto character : characters) {
-		character->show();
-	}
+	Circle c(5);
+	std::cout << "Area: " << c.area() << std::endl;
+	std::cout << "Perimeter: " << c.perimeter() << std::endl;
 }
 
