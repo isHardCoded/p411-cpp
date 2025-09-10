@@ -1,29 +1,33 @@
 #include <iostream>
 
-// Напишите программу на C++ для реализации класса под названием Circle, который имеет частные переменные членов для радиуса. 
-// Включите функции членов для вычисления площади и окружности круга. 
+// Напишите программу на C++, чтобы создать класс под названием Прямоугольник, 
+// который имеет частные переменные членов для длины и ширины. 
+// Внедрение функций элемента для вычисления площади и периметра прямоугольника. 
 
-class Circle {
+class Rectangle {
 	public:
-		double radius;
+		double length;
+		double width;
 
-		Circle(double radius) {
-			this->radius = radius;
+		Rectangle(double length, double width) {
+			this->length = length;
+			this->width = width;
 		}
 
 		double area() {
-			return 3.14 * radius * radius;
+			return length * width;
 		}
 
 		double perimeter() {
-			return 2 * 3.14 * radius;
+			return (length + width) * 2;
 		}
 };
 
 int main()
 {
-	Circle c(5);
-	std::cout << "Area: " << c.area() << std::endl;
-	std::cout << "Perimeter: " << c.perimeter() << std::endl;
+	Rectangle r(5, 10);
+
+	std::cout << "Area: " << r.area() << std::endl;
+	std::cout << "Perimeter: " << r.perimeter() << std::endl;
 }
 
