@@ -1,46 +1,43 @@
 #include <iostream>
 
-// Напишите программу на C++ для реализации класса под названием BankAccount, 
-// который имеет частные переменные для числа участников счета и баланса. 
-// Включите функции участников для внесения и снятия денег со счета. 
+// Напишите программу на C++, чтобы создать класс под названием Треугольник, 
+// который имеет частные переменные членов для длин трех сторон. 
+// Реализуйте функции элемента, чтобы определить, 
+// является ли треугольник равносторонним, изосцеленным или масштабируемым. 
 
-class BankAccount {
+class Triangle {
 	private:
-		std::string accountNumber;
-		double balance;
+		double side1;
+		double side2;
+		double side3;
 
 	public:
-		BankAccount(std::string accountNumber, double balance) {
-			this->accountNumber = accountNumber;
-			this->balance = balance;
+		Triangle(double side1, double side2, double side3) {
+			this->side1 = side1;
+			this->side2 = side2;
+			this->side3 = side3;
 		}
 
-		void deposit(double amount) {
-			balance += amount;
+		bool isEquilateral() {
+			return (side1 == side2) && (side2 == side3);
 		}
 
-		void withdraw(double amount) {
-			if (amount > 0) {
-				std::cout << amount << " > " << balance << std::endl;
-			}
-			else {
-				balance -= amount;
-			}
+		bool isIsosceles() {
+			return (side1 == side2) || (side1 == side3) || (side2 == side3);
 		}
 
-		void show() {
-			std::cout << "Account number: " << accountNumber << std::endl;
-			std::cout << "Balance: " << balance << std::endl;
+		bool isScalene() {
+			return (side1 != side2 && side2 != side3 && side1 != side3);
 		}
 };
 
 int main()
 {
-	BankAccount ba("411", 0);
-	ba.show();
+	Triangle t(3, 3, 3);
 
-	ba.withdraw(1000000);
+	std::cout << t.isEquilateral() << std::endl;
+	std::cout << t.isIsosceles() << std::endl;
+	std::cout << t.isScalene() << std::endl;
 
-	ba.show();
 }
 
