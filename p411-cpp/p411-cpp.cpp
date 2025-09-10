@@ -1,33 +1,57 @@
 #include <iostream>
 
-// Напишите программу на C++, чтобы создать класс под названием Прямоугольник, 
-// который имеет частные переменные членов для длины и ширины. 
-// Внедрение функций элемента для вычисления площади и периметра прямоугольника. 
+// Напишите программу на C++, чтобы создать класс под названием «Человек», 
+// который имеет частные переменные для имени, возраста и страны. 
+// Внедрение функций членов для установки и получения значений этих переменных. 
 
-class Rectangle {
+class Human {
+
+	private:
+		std::string name;
+		int age;
+		std::string country;
+
 	public:
-		double length;
-		double width;
-
-		Rectangle(double length, double width) {
-			this->length = length;
-			this->width = width;
+		Human(std::string name, int age, std::string country) {
+			this->name = name;
+			this->age = age;
+			this->country = country;
 		}
 
-		double area() {
-			return length * width;
+		std::string getName() {
+			return name;
 		}
 
-		double perimeter() {
-			return (length + width) * 2;
+		std::string getCountry() {
+			return country;
+		}
+
+		int getAge() {
+			return age;
+		}
+
+		void setName(std::string value) {
+			name = value;
+		}
+
+		void setCountry(std::string value) {
+			country = value;
+		}
+
+		void setAge(int value) {
+			age = value;
+		}
+
+		void show() {
+			std::cout << "Name: " << name << std::endl;
+			std::cout << "Age: " << age << std::endl;
+			std::cout << "Country: " << country << std::endl;
 		}
 };
 
 int main()
 {
-	Rectangle r(5, 10);
-
-	std::cout << "Area: " << r.area() << std::endl;
-	std::cout << "Perimeter: " << r.perimeter() << std::endl;
+	Human h("John", 25, "USA");	
+	h.show();
 }
 
