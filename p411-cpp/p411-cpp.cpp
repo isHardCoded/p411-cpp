@@ -1,58 +1,46 @@
 #include <iostream>
 
-// Напишите программу на C++, чтобы создать класс под названием Car, 
-// который имеет частные переменные для компании, модели и года. 
-// Внедрение функций членов для получения и установки этих переменных. 
+// Напишите программу на C++ для реализации класса под названием BankAccount, 
+// который имеет частные переменные для числа участников счета и баланса. 
+// Включите функции участников для внесения и снятия денег со счета. 
 
-class Car {
+class BankAccount {
 	private:
-		std::string company;
-		std::string model;
-		int year;
+		std::string accountNumber;
+		double balance;
 
 	public:
-		Car(std::string company, std::string model, int year) {
-			this->company = company;
-			this->model = model;
-			this->year = year;
+		BankAccount(std::string accountNumber, double balance) {
+			this->accountNumber = accountNumber;
+			this->balance = balance;
 		}
 
-		std::string getCompany() {
-			return company;
+		void deposit(double amount) {
+			balance += amount;
 		}
 
-		std::string getModel() {
-			return model;
-		}
-
-		int getYear() {
-			return year;
-		}
-
-		void setCompany(std::string value) {
-			company = value;
-		}
-
-		void setModel(std::string value) {
-			model = value;
-		}
-
-		void setYear(int value) {
-			year = value;
+		void withdraw(double amount) {
+			if (amount > 0) {
+				std::cout << amount << " > " << balance << std::endl;
+			}
+			else {
+				balance -= amount;
+			}
 		}
 
 		void show() {
-			std::cout << "Company: " << company << std::endl;
-			std::cout << "Model: " << model << std::endl;
-			std::cout << "Year: " << year << std::endl;
-			std::cout << std::endl;
+			std::cout << "Account number: " << accountNumber << std::endl;
+			std::cout << "Balance: " << balance << std::endl;
 		}
 };
 
 int main()
 {
-	Car c("Toyota", "Camry", 2022);
-	
-	c.show();
+	BankAccount ba("411", 0);
+	ba.show();
+
+	ba.withdraw(1000000);
+
+	ba.show();
 }
 
