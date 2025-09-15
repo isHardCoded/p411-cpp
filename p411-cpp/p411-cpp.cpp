@@ -1,40 +1,44 @@
 #include <iostream>
+#include <string>
 
-class Character {
-	public:
-		std::string name;
-		int level;
-		double mana;
-		bool isAlive;
+using namespace std;
 
-		Character (std::string name, int level, double mana, bool isAlive) {
-			this->name = name;
-			this->level = level;
-			this->mana = mana;
-			this->isAlive = isAlive;
+class Phone {
+	protected:
+		string brand;
+		string model;
+
+		void turn_on() {
+			cout << model << " is turn on" << endl;
 		}
 
-		void show() {
-			std::cout << "Name: " << name << std::endl;
-			std::cout << "Level: " << level << std::endl;
-			std::cout << "Mana: " << mana << std::endl;
-			std::cout << "Is alive: " << isAlive << std::endl;
-			std::cout << std::endl;
+		virtual void show() {
+			cout << "Brand: " << brand << endl;
+			cout << "Model: " << model << endl;
+		}
+
+		Phone(string b, string m) : brand(b), model(m) {}
+};
+
+class IPhone : public Phone {
+	protected:
+		bool facetime;
+
+	public:
+		void show() override {
+			cout << "Brand: " << brand << endl;
+			cout << "Model: " << model << endl;
+			cout << "Facetime: " << (facetime ? "Yes" : "No") << endl;
+		}
+
+		IPhone(string b, string m, bool f)
+			: Phone(b, m), facetime(f) {
 		}
 };
 
 int main()
 {
-	Character* characters[] = {
-		new Character("John", 5, 10.5, true),
-		new Character("Tom", 4, 2.5, false),
-		new Character("Tim", 12, 32.5, true),
-		new Character("Jim", 7, 14.5, true),
-		new Character("Bob", 1, 1, true)
-	};
-
-	for (auto character : characters) {
-		character->show();
-	}
+	IPhone iphone("Apple", "Iphone X", true);
+	iphone.show();
 }
 
