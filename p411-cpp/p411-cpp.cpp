@@ -1,44 +1,57 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
-using namespace std;
-
-class Phone {
-	protected:
-		string brand;
-		string model;
-
-		void turn_on() {
-			cout << model << " is turn on" << endl;
-		}
-
-		virtual void show() {
-			cout << "Brand: " << brand << endl;
-			cout << "Model: " << model << endl;
-		}
-
-		Phone(string b, string m) : brand(b), model(m) {}
-};
-
-class IPhone : public Phone {
-	protected:
-		bool facetime;
+class Student {
+	private:
+		int id;
+		std::string name;
+		std::string _class;
+		std::vector<double> grades;
 
 	public:
-		void show() override {
-			cout << "Brand: " << brand << endl;
-			cout << "Model: " << model << endl;
-			cout << "Facetime: " << (facetime ? "Yes" : "No") << endl;
+		Student(int id, const std::string& name, const std::string& _class) {
+			this->id = id;
+			this->name = name;
+			this->_class = _class;
 		}
 
-		IPhone(string b, string m, bool f)
-			: Phone(b, m), facetime(f) {
+		void addMark(int grade) {
+			grades.push_back(grade);
+		}
+
+		double getAverageGrade() {
+			if (grades.empty()) {
+				return 0.0;
+			}
+
+			int sum = 0;
+			for (int grade : grades) {
+				sum += grade;
+			}
+
+			return sum / (0.0 + grades.size());
+		}
+
+		void show() {
+			std::cout << "Student [" << id << "]: " << name << std::endl;
+			std::cout << "Grades [ ";
+			for (int grade : grades) {	
+				std::cout << grade << " ";
+			}
+			std::cout << "]" << std::endl;
+			std::cout << "Average grade: " << getAverageGrade() << std::endl;
 		}
 };
 
 int main()
 {
-	IPhone iphone("Apple", "Iphone X", true);
-	iphone.show();
+	Student st1(1, "Tom", "1B");
+	st1.addMark(5);
+	st1.addMark(5);
+	st1.addMark(5);
+	st1.addMark(2);
+
+	st1.show();
 }
 
