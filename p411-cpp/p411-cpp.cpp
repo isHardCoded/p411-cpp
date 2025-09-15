@@ -1,57 +1,74 @@
 #include <iostream>
-#include <string>
-#include <vector>
 
-class Student {
+class Shape {
+	public:
+		virtual double area() = 0;
+		virtual double perimeter() = 0;
+};
+
+class Circle : public Shape {
 	private:
-		int id;
-		std::string name;
-		std::string _class;
-		std::vector<double> grades;
+		double radius;
 
 	public:
-		Student(int id, const std::string& name, const std::string& _class) {
-			this->id = id;
-			this->name = name;
-			this->_class = _class;
+		Circle(double r) : radius(r) {}
+
+		double area() override {
+			return 3.14 * radius * radius;
 		}
 
-		void addMark(int grade) {
-			grades.push_back(grade);
+		double perimeter() override {
+			return 2 * 3.14 * radius;
+		}
+};
+
+class Rectangle : public Shape {
+	private:
+		double width;
+		double length;
+
+	public:
+		Rectangle(double w, double l) : width(w), length(l) {}
+
+		double area() override {
+			return width * length;
 		}
 
-		double getAverageGrade() {
-			if (grades.empty()) {
-				return 0.0;
-			}
-
-			int sum = 0;
-			for (int grade : grades) {
-				sum += grade;
-			}
-
-			return sum / (0.0 + grades.size());
+		double perimeter() override {
+			return (width + length) * 2;
 		}
+};
 
-		void show() {
-			std::cout << "Student [" << id << "]: " << name << std::endl;
-			std::cout << "Grades [ ";
-			for (int grade : grades) {	
-				std::cout << grade << " ";
-			}
-			std::cout << "]" << std::endl;
-			std::cout << "Average grade: " << getAverageGrade() << std::endl;
+class Triangle : public Shape {
+	private:
+		double side1;
+		double side2;
+		double base;
+		double height;
+
+	public:
+		Triangle(double b, double h, double s1, double s2) 
+			: base(b), height(h), side1(s1), side2(s2) {}
+
+		double area() override {
+			return (base * height) / 2;
+		}
+		double perimeter() override {
+			return side1 + side2 + base;
 		}
 };
 
 int main()
 {
-	Student st1(1, "Tom", "1B");
-	st1.addMark(5);
-	st1.addMark(5);
-	st1.addMark(5);
-	st1.addMark(2);
+	Shape* shapes[] = {
+		new Circle(5),
+		new Rectangle(2, 4),
+		new Triangle(2, 3, 4, 5)
+	};
 
-	st1.show();
+	for (auto shape : shapes) {
+		std::cout << "Area: " << shape->area() << std::endl;
+		std::cout << "Perimeter: " << shape->perimeter() << std::endl;
+	}
 }
 
