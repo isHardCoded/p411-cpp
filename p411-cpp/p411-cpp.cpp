@@ -92,9 +92,10 @@ class Reader {
 			auto it = find(borrowedBooks.begin(), borrowedBooks.end(), book);
 
 			if (it != borrowedBooks.end()) {
+				Book* borrowedBook = *it;
+
+				borrowedBook->setAvailability(true);
 				borrowedBooks.erase(it);
-				(*it)->setAvailability(true);
-				
 
 				std::cout << name << " returned" << std::endl;
 			}
