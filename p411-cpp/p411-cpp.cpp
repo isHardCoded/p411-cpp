@@ -1,37 +1,45 @@
 #include <iostream>
 
-class Animal {
-public:
-	virtual void sound() {
-		std::cout << "Animal makes sound";
-	}
+class Employee {
+	private:
+		std::string name;
+		int id;
+
+		static int employeeCount;
+		static int nextId;
+
+	public:
+		Employee(const std::string& employeeName) : name(employeeName) {
+			id = nextId++;
+			employeeCount++;
+		}
+
+		int getId() const {
+			return id;
+		}
+
+		std::string getName() const {
+			return name;
+		}
+
+		static int getEmployeeCount() {
+			return employeeCount;
+		}
 };
 
-class Dog : public Animal {
-public:
-	void sound() override {
-		std::cout << "Dog barks";
-	}
-
-	void fetch() {
-		std::cout << "Dog fethes ball";
-	}
-};
-
-class Cat : public Animal {
-public:
-	void sound() override {
-		std::cout << "Cat meow";
-	}
-};
+int Employee::nextId = 1;
+int Employee::employeeCount = 0;
 
 int main()
 {
-	Dog dog;
-	Animal* animalPtr = &dog;
+	Employee e1("Tom");
+	Employee e2("Tim");
+	Employee e3("Sam");
 
-	Dog* dogPtr = static_cast<Dog*>(animalPtr);
+	std::cout << e1.getId();
+	std::cout << e2.getId();
+	std::cout << e3.getId();
 
-	dogPtr->fetch();
+	std::cout << Employee::getEmployeeCount();
 }
 
