@@ -1,25 +1,33 @@
 #include <iostream>
 
-// cast
+// const_cast
+void func(const int* p) {
+	int* q = const_cast<int*>(p);
+	*q = 10;
+}
 
-// static_cast
-class Base {};
-class Derived : public Base {};
+class MyClass {
+	int value;
+
+public:
+	void setValue(int v) { value = v; }
+	void printValue() const {
+		std::cout << value << std::endl;
+		const_cast<MyClass*>(this)->value = 10;
+		std::cout << value;
+	}
+};
 
 int main()
 {
-	int i = 10;
-	double d = static_cast<double>(i);
+	int x = 5;
+	const int y = 7;
 
-	int x = 5, y = 2;
-	double result = static_cast<double>(x) / y;
+	func(&x);
+	func(&y);
 
-	char c = 'A';
-	int ascii = static_cast<int>(c);
-
-	std::cout << result;
-
-	Base* b = new Derived();
-	Derived* d = static_cast<Derived*>(b);
+	MyClass obj;
+	obj.setValue(5);
+	obj.printValue();
 }
 
