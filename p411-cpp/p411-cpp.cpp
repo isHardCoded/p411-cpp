@@ -1,45 +1,46 @@
 #include <iostream>
 
-class Employee {
+class TodoItem {
 	private:
-		std::string name;
+		std::string description;
+		bool completed;
 		int id;
 
-		static int employeeCount;
+	public:
+		static int todoCount;
 		static int nextId;
 
-	public:
-		Employee(const std::string& employeeName) : name(employeeName) {
-			id = nextId++;
-			employeeCount++;
+		TodoItem(const std::string& desc) 
+			: description(desc), completed(false), id(nextId++) {
+			todoCount++;
 		}
 
-		int getId() const {
-			return id;
+		void complete() {
+			completed = true;
 		}
 
-		std::string getName() const {
-			return name;
+		void print() const {
+			std::cout << "ID: " << id << std::endl;
+			std::cout << "Description: " << description << std::endl;
+			std::cout << "Completed: " << (completed ? "Yes" : "No") << std::endl;
 		}
 
-		static int getEmployeeCount() {
-			return employeeCount;
+		static int getTodoCount() {
+			return todoCount;
 		}
 };
 
-int Employee::nextId = 1;
-int Employee::employeeCount = 0;
+int TodoItem::todoCount = 0;
+int TodoItem::nextId = 1;
 
 int main()
 {
-	Employee e1("Tom");
-	Employee e2("Tim");
-	Employee e3("Sam");
+	TodoItem t1("Todo 1");
+	TodoItem t2("Todo 2");
+	TodoItem t3("Todo 3");
 
-	std::cout << e1.getId();
-	std::cout << e2.getId();
-	std::cout << e3.getId();
+	t2.complete();
 
-	std::cout << Employee::getEmployeeCount();
+	std::cout << "Todos count: " << TodoItem::getTodoCount() << std::endl;
 }
 
