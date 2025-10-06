@@ -82,7 +82,6 @@ int main()
 	cpr::Response get_res = client.getUsers();
 	std::cout << "[GET] status: " << get_res.status_code << std::endl;
 
-	cpr::Response edit_res = client.editUser("14", "Tom123123123123123", "Tom", "Doe", "Tyumen");
-	std::cout << "[PUT] status: " << edit_res.status_code << std::endl;
+	std::cout << response.text << std::endl;
 }
 
